@@ -4,7 +4,14 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 UTILS_DIR="${CURRENT_DIR}/utils"
 
+# Map the pane navigation key
 tmux bind-key h run-shell "${UTILS_DIR}/navigate_pane_no_cycle.sh -L"
 tmux bind-key j run-shell "${UTILS_DIR}/navigate_pane_no_cycle.sh -D"
 tmux bind-key k run-shell "${UTILS_DIR}/navigate_pane_no_cycle.sh -U"
 tmux bind-key l run-shell "${UTILS_DIR}/navigate_pane_no_cycle.sh -R"
+
+# Map the pane resize key
+tmux bind-key -r C-h resize-pane -L
+tmux bind-key -r C-j resize-pane -D
+tmux bind-key -r C-k resize-pane -U
+tmux bind-key -r C-l resize-pane -R
