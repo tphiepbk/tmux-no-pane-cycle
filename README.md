@@ -12,6 +12,10 @@ set -g @plugin 'tphiepbk/tmux-no-pane-cycle'
 
 Use `prefix` + <kbd>I</kbd> to install it.
 
+## Reference
+
+https://unix.stackexchange.com/questions/451437/how-not-to-switch-past-the-edge-of-panes-in-tmux
+
 ## License
 
 [MIT](LICENSE)
