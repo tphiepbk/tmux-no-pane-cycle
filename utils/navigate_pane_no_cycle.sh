@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+function _toggle_zoom() {
+    tmux resize-pane -Z
+}
+
+# First zoom out the pane if necessary
+# Limitation: it could be a little glitch
+zoomed_in_current_pane=$(tmux list-panes -F '#F' | grep -q Z && echo 1 || echo 0)
+if [[ "${zoomed_in_current_pane}" -eq 1 ]]; then
+    _toggle_zoom
+fi
+
 DIRECTION=$1
 
 case $DIRECTION in
@@ -51,5 +62,10 @@ esac;
 
 if [[ "$switchable" -eq 1 ]]; then
     tmux select-pane "$DIRECTION"
+else
+    if [[ "${zoomed_in_current_pane}" -eq 1 ]]; then
+        _toggle_zoom
+    fi
 fi
+
 
