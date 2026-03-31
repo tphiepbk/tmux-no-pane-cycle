@@ -10,22 +10,46 @@ case $DIRECTION in
     *)  exit 1 ;;
 esac
 
-current_pane=$(tmux display -p "#{$target_pane}")
+# Get the window size
+window_width=$(tmux display -p "#{window_width}")
+window_height=$(tmux display -p "#{window_height}")
 
-tmux select-pane "$DIRECTION"
+# Get the limit position
+right_most=$(( window_width - 1 ))
+left_most=0
+bottom_most=$(( window_height - 1 ))
+top_most=0
 
-new_pane=$(tmux display -p "#{$target_pane}")
+# Get the position of target pane
+target_pane_position=$(tmux display -p "#{$target_pane}")
+
+switchable=0
 
 case $DIRECTION in
-    -U|-L)
-        if [[ "$new_pane" -gt "$current_pane" ]]; then
-            tmux select-pane -l
+    -U)
+        if [[ "${target_pane_position}" -gt "${top_most}" ]]; then
+            switchable=1
         fi
     ;;
-    -D|-R)
-        if [[ "$new_pane" -lt "$current_pane" ]]; then
-            tmux select-pane -l
+    -D)
+        if [[ "${target_pane_position}" -lt "${bottom_most}" ]]; then
+            switchable=1
+        fi
+    ;;
+    -L)
+        if [[ "${target_pane_position}" -gt "${left_most}" ]]; then
+            switchable=1
+        fi
+    ;;
+    -R)
+        if [[ "${target_pane_position}" -lt "${right_most}" ]]; then
+            switchable=1
         fi
     ;;
     *)  exit 1 ;;
 esac;
+
+if [[ "$switchable" -eq 1 ]]; then
+    tmux select-pane "$DIRECTION"
+fi
+
