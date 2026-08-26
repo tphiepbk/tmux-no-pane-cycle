@@ -18,8 +18,8 @@ Use `prefix` + <kbd>I</kbd> to install it.
 # Enable the popup whenever could not move (default value is 'no')
 set-option -g @no-pane-cycle-popup 'yes'
 
-# Set the timeout of the popup 
-set-option -g @no-pane-cycle-popup-timeout '0.5'
+# Set the timeout of the popup (default value is '0.5')
+set-option -g @no-pane-cycle-popup-timeout '1'
 ```
 
 ## License
