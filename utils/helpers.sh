@@ -24,7 +24,7 @@ function show_popup() {
     local message="$1"
     local popup_width="20%"
     local popup_height="5%"
-    local popup_x_pos="R"
+    local popup_x_pos="200%"
     local popup_y_pos="0%"
 
     local sleep_time

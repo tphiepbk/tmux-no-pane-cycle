@@ -20,6 +20,9 @@ set-option -g @no-pane-cycle-popup 'yes'
 
 # Set the timeout of the popup (default value is '0.5')
 set-option -g @no-pane-cycle-popup-timeout '1'
+
+# Keep zoomed pane whenever could not move (default value is 'no')
+set-option -g @no-pane-cycle-keep-zoomed-pane 'yes'
 ```
 
 ## License

@@ -66,7 +66,8 @@ if [[ "$switchable" -eq 1 ]]; then
 else
     # Cannot move to another pane
     if [[ "${zoomed_in_current_pane}" -eq 1 ]]; then
-        toggle_zoom
+        keep_zoomed_pane=$(get_tmux_option "@no-pane-cycle-keep-zoomed-pane" "no")
+        [[ ${keep_zoomed_pane} == "yes" ]] && toggle_zoom
     fi
     popup_enabled=$(get_tmux_option "@no-pane-cycle-popup" "no")
     if [[ "${popup_enabled}" == "yes" ]]; then
